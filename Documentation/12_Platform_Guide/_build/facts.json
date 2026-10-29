@@ -1,0 +1,4271 @@
+{
+ "tables": {
+  "attempt_items": {
+   "cols": [
+    {
+     "n": "attempt_id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "position",
+     "t": "INTEGER",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "question_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "snapshot",
+     "t": "JSONB",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "answer_index",
+     "t": "INTEGER",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "answered_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "is_correct",
+     "t": "BOOLEAN",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "time_spent_s",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "flagged",
+     "t": "BOOLEAN",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "question_id",
+     "to": "questions",
+     "on": "CASCADE"
+    },
+    {
+     "c": "attempt_id",
+     "to": "test_attempts",
+     "on": "CASCADE"
+    }
+   ],
+   "idx": 1
+  },
+  "audit_log": {
+   "cols": [
+    {
+     "n": "id",
+     "t": "BIGINT",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "occurred_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "actor_user_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "actor_type",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "actor_roles",
+     "t": "JSONB",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "action",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "target_type",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "target_id",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "subject_user_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "request_id",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "ip_address",
+     "t": "INET",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "reason",
+     "t": "TEXT",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "changes",
+     "t": "JSONB",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "metadata",
+     "t": "JSONB",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "prev_hash",
+     "t": "BLOB",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "hash",
+     "t": "BLOB",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [],
+   "idx": 4
+  },
+  "batches": {
+   "cols": [
+    {
+     "n": "code",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": true
+    },
+    {
+     "n": "name",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "exam_window",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "starts_on",
+     "t": "DATE",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "ends_on",
+     "t": "DATE",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "status",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [],
+   "idx": 0
+  },
+  "bookmarks": {
+   "cols": [
+    {
+     "n": "user_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "target_type",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "target_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "position_s",
+     "t": "INTEGER",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "note",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "user_id",
+     "to": "users",
+     "on": "CASCADE"
+    }
+   ],
+   "idx": 1
+  },
+  "card_reviews": {
+   "cols": [
+    {
+     "n": "user_id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "card_id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "ease",
+     "t": "FLOAT",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "interval_days",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "reps",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "lapses",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "due_on",
+     "t": "DATE",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "last_rating",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "last_reviewed_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "total_reviews",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "known_reviews",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "card_id",
+     "to": "flashcards",
+     "on": "CASCADE"
+    },
+    {
+     "c": "user_id",
+     "to": "users",
+     "on": "CASCADE"
+    }
+   ],
+   "idx": 1
+  },
+  "consents": {
+   "cols": [
+    {
+     "n": "user_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "purpose",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "granted",
+     "t": "BOOLEAN",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "notice_version",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "actor",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "guardian_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "method",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "ip_address",
+     "t": "INET",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "user_agent",
+     "t": "TEXT",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "user_id",
+     "to": "users",
+     "on": "CASCADE"
+    },
+    {
+     "c": "guardian_id",
+     "to": "guardians",
+     "on": "SET NULL"
+    }
+   ],
+   "idx": 1
+  },
+  "content_items": {
+   "cols": [
+    {
+     "n": "lm_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "topic_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "kind",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "title",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "sort_order",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "current_published_version_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "topic_id",
+     "to": "topics",
+     "on": "SET NULL"
+    },
+    {
+     "c": "lm_id",
+     "to": "learning_modules",
+     "on": "CASCADE"
+    }
+   ],
+   "idx": 1
+  },
+  "content_versions": {
+   "cols": [
+    {
+     "n": "item_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "version_no",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "body",
+     "t": "JSONB",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "plain_text",
+     "t": "TEXT",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "status",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "provenance",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "licence_ref",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "author_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "reviewer_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "published_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "note",
+     "t": "TEXT",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "item_id",
+     "to": "content_items",
+     "on": "CASCADE"
+    },
+    {
+     "c": "author_id",
+     "to": "users",
+     "on": null
+    },
+    {
+     "c": "reviewer_id",
+     "to": "users",
+     "on": null
+    }
+   ],
+   "idx": 1
+  },
+  "course_subjects": {
+   "cols": [
+    {
+     "n": "course_id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "subject_id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "course_id",
+     "to": "courses",
+     "on": "CASCADE"
+    },
+    {
+     "c": "subject_id",
+     "to": "subjects",
+     "on": "CASCADE"
+    }
+   ],
+   "idx": 0
+  },
+  "courses": {
+   "cols": [
+    {
+     "n": "code",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": true
+    },
+    {
+     "n": "title",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "tagline",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "description",
+     "t": "TEXT",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "fee_paise",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "currency",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "validity_days",
+     "t": "INTEGER",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "access_ends_on",
+     "t": "DATE",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "seat_limit",
+     "t": "INTEGER",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "batch_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "exam_window",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "status",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "sort_order",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "batch_id",
+     "to": "batches",
+     "on": "SET NULL"
+    }
+   ],
+   "idx": 0
+  },
+  "data_requests": {
+   "cols": [
+    {
+     "n": "user_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "type",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "status",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "note",
+     "t": "TEXT",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "details",
+     "t": "JSONB",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "due_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "handled_by",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "resolution_note",
+     "t": "TEXT",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "closed_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "user_id",
+     "to": "users",
+     "on": "CASCADE"
+    },
+    {
+     "c": "handled_by",
+     "to": "users",
+     "on": null
+    }
+   ],
+   "idx": 1
+  },
+  "enrolments": {
+   "cols": [
+    {
+     "n": "user_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "batch_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "status",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "enrolled_by",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "enrolled_by",
+     "to": "users",
+     "on": null
+    },
+    {
+     "c": "batch_id",
+     "to": "batches",
+     "on": "CASCADE"
+    },
+    {
+     "c": "user_id",
+     "to": "users",
+     "on": "CASCADE"
+    }
+   ],
+   "idx": 1
+  },
+  "entitlements": {
+   "cols": [
+    {
+     "n": "user_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "subject_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "source",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "source_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "starts_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "ends_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "revoked_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "user_id",
+     "to": "users",
+     "on": "CASCADE"
+    },
+    {
+     "c": "subject_id",
+     "to": "subjects",
+     "on": "CASCADE"
+    }
+   ],
+   "idx": 1
+  },
+  "eoc_entries": {
+   "cols": [
+    {
+     "n": "user_id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "lm_id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "attempted",
+     "t": "BOOLEAN",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "q_attempted",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "q_correct",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "completed_on",
+     "t": "DATE",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "weak_topics",
+     "t": "TEXT",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "lm_id",
+     "to": "learning_modules",
+     "on": "CASCADE"
+    },
+    {
+     "c": "user_id",
+     "to": "users",
+     "on": "CASCADE"
+    }
+   ],
+   "idx": 0
+  },
+  "flashcards": {
+   "cols": [
+    {
+     "n": "subject_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "lm_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "front",
+     "t": "TEXT",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "back",
+     "t": "TEXT",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "status",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "sort_order",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "source_ref",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": true
+    },
+    {
+     "n": "created_by",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "lm_id",
+     "to": "learning_modules",
+     "on": "SET NULL"
+    },
+    {
+     "c": "created_by",
+     "to": "users",
+     "on": null
+    },
+    {
+     "c": "subject_id",
+     "to": "subjects",
+     "on": "CASCADE"
+    }
+   ],
+   "idx": 2
+  },
+  "guardians": {
+   "cols": [
+    {
+     "n": "student_user_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": true
+    },
+    {
+     "n": "full_name",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "mobile_e164",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "relationship",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "verified_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "verification_method",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "withdrawn_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "student_user_id",
+     "to": "users",
+     "on": "CASCADE"
+    }
+   ],
+   "idx": 0
+  },
+  "learning_modules": {
+   "cols": [
+    {
+     "n": "subject_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "lm_no",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "title",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "summary",
+     "t": "TEXT",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "source_ref",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "status",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "published_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "subject_id",
+     "to": "subjects",
+     "on": "CASCADE"
+    }
+   ],
+   "idx": 1
+  },
+  "lm_progress": {
+   "cols": [
+    {
+     "n": "user_id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "lm_id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "learned_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "learned_undo_until",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "last_opened_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "user_id",
+     "to": "users",
+     "on": "CASCADE"
+    },
+    {
+     "c": "lm_id",
+     "to": "learning_modules",
+     "on": "CASCADE"
+    }
+   ],
+   "idx": 0
+  },
+  "los": {
+   "cols": [
+    {
+     "n": "lm_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "code",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "statement",
+     "t": "TEXT",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "command_word",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "lm_id",
+     "to": "learning_modules",
+     "on": "CASCADE"
+    }
+   ],
+   "idx": 1
+  },
+  "orders": {
+   "cols": [
+    {
+     "n": "number",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": true
+    },
+    {
+     "n": "user_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "purpose",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "reference_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "description",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "amount_paise",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "currency",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "status",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "provider",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "provider_order_id",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": true
+    },
+    {
+     "n": "expires_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "paid_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "refunded_paise",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "offline_reference",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "notes",
+     "t": "JSONB",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "user_id",
+     "to": "users",
+     "on": "RESTRICT"
+    }
+   ],
+   "idx": 3
+  },
+  "otp_challenges": {
+   "cols": [
+    {
+     "n": "channel",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "destination_hash",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "purpose",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "code_hash",
+     "t": "BLOB",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "attempts",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "expires_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "consumed_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [],
+   "idx": 1
+  },
+  "outbox": {
+   "cols": [
+    {
+     "n": "id",
+     "t": "BIGINT",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "topic",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "payload",
+     "t": "JSONB",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "dispatched_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "attempts",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "last_error",
+     "t": "TEXT",
+     "pk": false,
+     "null": true,
+     "uq": false
+    }
+   ],
+   "fks": [],
+   "idx": 2
+  },
+  "payment_events": {
+   "cols": [
+    {
+     "n": "provider",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "event_id",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "event_type",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "payload",
+     "t": "JSONB",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "signature_valid",
+     "t": "BOOLEAN",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "received_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "processed_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "error",
+     "t": "TEXT",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [],
+   "idx": 0
+  },
+  "payments": {
+   "cols": [
+    {
+     "n": "order_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "provider",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "provider_payment_id",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": true
+    },
+    {
+     "n": "status",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "amount_paise",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "method",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "error_code",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "error_description",
+     "t": "TEXT",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "captured_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "order_id",
+     "to": "orders",
+     "on": "CASCADE"
+    }
+   ],
+   "idx": 1
+  },
+  "questions": {
+   "cols": [
+    {
+     "n": "subject_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "lm_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "los_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "stem",
+     "t": "TEXT",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "options",
+     "t": "JSONB",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "correct_index",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "explanation",
+     "t": "TEXT",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "distractor_rationale",
+     "t": "JSONB",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "difficulty",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "qtype",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "calc_mechanic",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "lock_option_order",
+     "t": "BOOLEAN",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "status",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "provenance",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "version",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "source_ref",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": true
+    },
+    {
+     "n": "author_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "reviewer_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "published_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "reviewer_id",
+     "to": "users",
+     "on": null
+    },
+    {
+     "c": "los_id",
+     "to": "los",
+     "on": "SET NULL"
+    },
+    {
+     "c": "subject_id",
+     "to": "subjects",
+     "on": "CASCADE"
+    },
+    {
+     "c": "lm_id",
+     "to": "learning_modules",
+     "on": "SET NULL"
+    },
+    {
+     "c": "author_id",
+     "to": "users",
+     "on": null
+    }
+   ],
+   "idx": 4
+  },
+  "refunds": {
+   "cols": [
+    {
+     "n": "order_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "payment_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "amount_paise",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "status",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "provider_refund_id",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "reason",
+     "t": "TEXT",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_by",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "created_by",
+     "to": "users",
+     "on": null
+    },
+    {
+     "c": "order_id",
+     "to": "orders",
+     "on": "CASCADE"
+    },
+    {
+     "c": "payment_id",
+     "to": "payments",
+     "on": null
+    }
+   ],
+   "idx": 1
+  },
+  "registrations": {
+   "cols": [
+    {
+     "n": "user_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "course_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "status",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "form",
+     "t": "JSONB",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "current_order_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "activated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "cancelled_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "cancel_reason",
+     "t": "TEXT",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "course_id",
+     "to": "courses",
+     "on": "RESTRICT"
+    },
+    {
+     "c": "user_id",
+     "to": "users",
+     "on": "CASCADE"
+    }
+   ],
+   "idx": 2
+  },
+  "resource_progress": {
+   "cols": [
+    {
+     "n": "user_id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "resource_id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "watched",
+     "t": "JSONB",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "last_position_s",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "completed_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "user_id",
+     "to": "users",
+     "on": "CASCADE"
+    },
+    {
+     "c": "resource_id",
+     "to": "resources",
+     "on": "CASCADE"
+    }
+   ],
+   "idx": 0
+  },
+  "resources": {
+   "cols": [
+    {
+     "n": "lm_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "topic_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "kind",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "title",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "sort_order",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "mandatory",
+     "t": "BOOLEAN",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "downloadable",
+     "t": "BOOLEAN",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "provenance",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "licence_ref",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "status",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "storage_key",
+     "t": "TEXT",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "mime_type",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "url",
+     "t": "TEXT",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "duration_s",
+     "t": "INTEGER",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "size_bytes",
+     "t": "BIGINT",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "chapters",
+     "t": "JSONB",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "created_by",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "published_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "topic_id",
+     "to": "topics",
+     "on": "SET NULL"
+    },
+    {
+     "c": "created_by",
+     "to": "users",
+     "on": null
+    },
+    {
+     "c": "lm_id",
+     "to": "learning_modules",
+     "on": "CASCADE"
+    }
+   ],
+   "idx": 1
+  },
+  "revision_logs": {
+   "cols": [
+    {
+     "n": "user_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "lm_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "revised_on",
+     "t": "DATE",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "activity",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "counted",
+     "t": "BOOLEAN",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "source",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "lm_id",
+     "to": "learning_modules",
+     "on": "CASCADE"
+    },
+    {
+     "c": "user_id",
+     "to": "users",
+     "on": "CASCADE"
+    }
+   ],
+   "idx": 2
+  },
+  "sessions": {
+   "cols": [
+    {
+     "n": "user_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "family_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "refresh_token_hash",
+     "t": "BLOB",
+     "pk": false,
+     "null": false,
+     "uq": true
+    },
+    {
+     "n": "prev_refresh_token_hash",
+     "t": "BLOB",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "device_label",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "ip_address",
+     "t": "INET",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "user_agent",
+     "t": "TEXT",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "last_seen_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "expires_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "revoked_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "revoke_reason",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "user_id",
+     "to": "users",
+     "on": "CASCADE"
+    }
+   ],
+   "idx": 2
+  },
+  "settings": {
+   "cols": [
+    {
+     "n": "key",
+     "t": "VARCHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "value",
+     "t": "JSONB",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "updated_by",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [],
+   "idx": 0
+  },
+  "subjects": {
+   "cols": [
+    {
+     "n": "code",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": true
+    },
+    {
+     "n": "name",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "icon",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "sort_order",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "status",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "exam_weight",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [],
+   "idx": 0
+  },
+  "test_attempts": {
+   "cols": [
+    {
+     "n": "user_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "kind",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "title",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "subject_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "lm_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "filters",
+     "t": "JSONB",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "mode",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "timed",
+     "t": "BOOLEAN",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "time_limit_s",
+     "t": "INTEGER",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "status",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "started_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "deadline_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "submitted_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "submit_reason",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "total",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "correct",
+     "t": "INTEGER",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "score_pct",
+     "t": "FLOAT",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "pass_mark",
+     "t": "INTEGER",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "subject_id",
+     "to": "subjects",
+     "on": "SET NULL"
+    },
+    {
+     "c": "lm_id",
+     "to": "learning_modules",
+     "on": "SET NULL"
+    },
+    {
+     "c": "user_id",
+     "to": "users",
+     "on": "CASCADE"
+    }
+   ],
+   "idx": 3
+  },
+  "topics": {
+   "cols": [
+    {
+     "n": "lm_id",
+     "t": "CHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "sort_order",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "title",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "status",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "los_ids",
+     "t": "JSONB",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "lm_id",
+     "to": "learning_modules",
+     "on": "CASCADE"
+    }
+   ],
+   "idx": 1
+  },
+  "user_roles": {
+   "cols": [
+    {
+     "n": "user_id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "role",
+     "t": "VARCHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "granted_by",
+     "t": "CHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "granted_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [
+    {
+     "c": "user_id",
+     "to": "users",
+     "on": "CASCADE"
+    },
+    {
+     "c": "granted_by",
+     "to": "users",
+     "on": null
+    }
+   ],
+   "idx": 0
+  },
+  "users": {
+   "cols": [
+    {
+     "n": "mobile_e164",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": true
+    },
+    {
+     "n": "email",
+     "t": "CITEXT",
+     "pk": false,
+     "null": true,
+     "uq": true
+    },
+    {
+     "n": "email_verified_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "full_name",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "student_code",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": true
+    },
+    {
+     "n": "dob",
+     "t": "DATE",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "is_minor",
+     "t": "BOOLEAN",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "status",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "password_hash",
+     "t": "TEXT",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "totp_secret",
+     "t": "BLOB",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "mfa_enrolled_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "failed_login_count",
+     "t": "INTEGER",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "locked_until",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "last_login_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "deleted_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "city",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "qualification",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "target_exam",
+     "t": "VARCHAR",
+     "pk": false,
+     "null": true,
+     "uq": false
+    },
+    {
+     "n": "id",
+     "t": "CHAR",
+     "pk": true,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "created_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    },
+    {
+     "n": "updated_at",
+     "t": "DATETIME",
+     "pk": false,
+     "null": false,
+     "uq": false
+    }
+   ],
+   "fks": [],
+   "idx": 1
+  }
+ },
+ "rbac": {
+  "student": [
+   "bookmark:self",
+   "consent:self",
+   "course:register",
+   "data_request:create",
+   "flashcard:review",
+   "order:self",
+   "profile:self",
+   "progress:write",
+   "test:take"
+  ],
+  "author": [
+   "bookmark:self",
+   "catalog:read_admin",
+   "catalog:write",
+   "content:write",
+   "data_request:create",
+   "flashcard:review",
+   "flashcard:write",
+   "profile:self",
+   "qbank:write",
+   "resource:write",
+   "staff:console",
+   "test:take"
+  ],
+  "reviewer": [
+   "bookmark:self",
+   "catalog:read_admin",
+   "content:publish",
+   "data_request:create",
+   "flashcard:review",
+   "profile:self",
+   "qbank:publish",
+   "report:read",
+   "resource:publish",
+   "staff:console",
+   "test:take"
+  ],
+  "admin": [
+   "audit:read",
+   "batch:manage",
+   "bookmark:self",
+   "catalog:publish",
+   "catalog:read_admin",
+   "catalog:write",
+   "content:publish",
+   "content:write",
+   "course:manage",
+   "data_request:create",
+   "data_request:process",
+   "enrolment:manage",
+   "entitlement:grant",
+   "flashcard:review",
+   "flashcard:write",
+   "order:offline",
+   "order:read",
+   "order:refund",
+   "profile:self",
+   "qbank:publish",
+   "qbank:write",
+   "report:read",
+   "resource:publish",
+   "resource:write",
+   "session:revoke",
+   "staff:console",
+   "test:take",
+   "user:read",
+   "user:write"
+  ],
+  "super_admin": [
+   "audit:read",
+   "audit:read_security",
+   "batch:manage",
+   "bookmark:self",
+   "catalog:publish",
+   "catalog:read_admin",
+   "catalog:write",
+   "content:publish",
+   "content:write",
+   "course:manage",
+   "data_request:create",
+   "data_request:process",
+   "enrolment:manage",
+   "entitlement:grant",
+   "flashcard:review",
+   "flashcard:write",
+   "order:offline",
+   "order:read",
+   "order:refund",
+   "profile:self",
+   "qbank:publish",
+   "qbank:write",
+   "report:read",
+   "resource:publish",
+   "resource:write",
+   "role:assign_admin",
+   "session:revoke",
+   "settings:global",
+   "staff:console",
+   "test:take",
+   "user:read",
+   "user:write"
+  ]
+ },
+ "routes": [
+  {
+   "mod": "admin/catalog",
+   "m": "GET",
+   "path": "/api/v1/admin/catalog",
+   "auth": "perm",
+   "perm": "catalog:read_admin"
+  },
+  {
+   "mod": "admin/catalog",
+   "m": "POST",
+   "path": "/api/v1/admin/subjects",
+   "auth": "perm",
+   "perm": "catalog:write"
+  },
+  {
+   "mod": "admin/catalog",
+   "m": "PATCH",
+   "path": "/api/v1/admin/subjects/{sid}",
+   "auth": "perm",
+   "perm": "catalog:write"
+  },
+  {
+   "mod": "admin/catalog",
+   "m": "POST",
+   "path": "/api/v1/admin/lms",
+   "auth": "perm",
+   "perm": "catalog:write"
+  },
+  {
+   "mod": "admin/catalog",
+   "m": "GET",
+   "path": "/api/v1/admin/lms/{lm_id}",
+   "auth": "perm",
+   "perm": "catalog:read_admin"
+  },
+  {
+   "mod": "admin/catalog",
+   "m": "PATCH",
+   "path": "/api/v1/admin/lms/{lm_id}",
+   "auth": "perm",
+   "perm": "catalog:write"
+  },
+  {
+   "mod": "admin/catalog",
+   "m": "POST",
+   "path": "/api/v1/admin/topics",
+   "auth": "perm",
+   "perm": "catalog:write"
+  },
+  {
+   "mod": "admin/catalog",
+   "m": "DELETE",
+   "path": "/api/v1/admin/topics/{tid}",
+   "auth": "perm",
+   "perm": "catalog:write"
+  },
+  {
+   "mod": "admin/catalog",
+   "m": "POST",
+   "path": "/api/v1/admin/los",
+   "auth": "perm",
+   "perm": "catalog:write"
+  },
+  {
+   "mod": "admin/catalog",
+   "m": "DELETE",
+   "path": "/api/v1/admin/los/{lid}",
+   "auth": "perm",
+   "perm": "catalog:write"
+  },
+  {
+   "mod": "admin/catalog",
+   "m": "POST",
+   "path": "/api/v1/admin/content-items",
+   "auth": "perm",
+   "perm": "content:write"
+  },
+  {
+   "mod": "admin/catalog",
+   "m": "GET",
+   "path": "/api/v1/admin/content-items/{iid}/versions/{vid}",
+   "auth": "perm",
+   "perm": "catalog:read_admin"
+  },
+  {
+   "mod": "admin/catalog",
+   "m": "POST",
+   "path": "/api/v1/admin/content-items/{iid}/versions",
+   "auth": "perm",
+   "perm": "content:write"
+  },
+  {
+   "mod": "admin/catalog",
+   "m": "POST",
+   "path": "/api/v1/admin/content-items/{iid}/versions/{vid}/publish",
+   "auth": "perm",
+   "perm": "content:publish"
+  },
+  {
+   "mod": "admin/catalog",
+   "m": "POST",
+   "path": "/api/v1/admin/resources",
+   "auth": "perm",
+   "perm": "resource:write"
+  },
+  {
+   "mod": "admin/catalog",
+   "m": "PATCH",
+   "path": "/api/v1/admin/resources/{rid}",
+   "auth": "perm",
+   "perm": "resource:write"
+  },
+  {
+   "mod": "admin/catalog",
+   "m": "POST",
+   "path": "/api/v1/admin/resources/{rid}/{action}",
+   "auth": "perm",
+   "perm": "resource:publish"
+  },
+  {
+   "mod": "admin/commerce",
+   "m": "GET",
+   "path": "/api/v1/admin/courses",
+   "auth": "perm",
+   "perm": "course:manage"
+  },
+  {
+   "mod": "admin/commerce",
+   "m": "POST",
+   "path": "/api/v1/admin/courses",
+   "auth": "perm",
+   "perm": "course:manage"
+  },
+  {
+   "mod": "admin/commerce",
+   "m": "PATCH",
+   "path": "/api/v1/admin/courses/{cid}",
+   "auth": "perm",
+   "perm": "course:manage"
+  },
+  {
+   "mod": "admin/commerce",
+   "m": "GET",
+   "path": "/api/v1/admin/registrations",
+   "auth": "perm",
+   "perm": "order:read"
+  },
+  {
+   "mod": "admin/commerce",
+   "m": "POST",
+   "path": "/api/v1/admin/registrations/offline",
+   "auth": "perm",
+   "perm": "order:offline"
+  },
+  {
+   "mod": "admin/commerce",
+   "m": "POST",
+   "path": "/api/v1/admin/registrations/{rid}/cancel",
+   "auth": "perm",
+   "perm": "order:refund"
+  },
+  {
+   "mod": "admin/commerce",
+   "m": "GET",
+   "path": "/api/v1/admin/orders",
+   "auth": "perm",
+   "perm": "order:read"
+  },
+  {
+   "mod": "admin/commerce",
+   "m": "GET",
+   "path": "/api/v1/admin/orders/{oid}",
+   "auth": "perm",
+   "perm": "order:read"
+  },
+  {
+   "mod": "admin/commerce",
+   "m": "POST",
+   "path": "/api/v1/admin/orders/{oid}/refund",
+   "auth": "perm",
+   "perm": "order:refund"
+  },
+  {
+   "mod": "admin/commerce",
+   "m": "GET",
+   "path": "/api/v1/admin/revenue",
+   "auth": "perm",
+   "perm": "order:read"
+  },
+  {
+   "mod": "admin/ops",
+   "m": "GET",
+   "path": "/api/v1/admin/overview",
+   "auth": "perm",
+   "perm": "report:read"
+  },
+  {
+   "mod": "admin/ops",
+   "m": "GET",
+   "path": "/api/v1/admin/reports/progress",
+   "auth": "perm",
+   "perm": "report:read"
+  },
+  {
+   "mod": "admin/ops",
+   "m": "GET",
+   "path": "/api/v1/admin/audit",
+   "auth": "perm",
+   "perm": "audit:read"
+  },
+  {
+   "mod": "admin/ops",
+   "m": "GET",
+   "path": "/api/v1/admin/audit/verify",
+   "auth": "perm",
+   "perm": "audit:read"
+  },
+  {
+   "mod": "admin/ops",
+   "m": "GET",
+   "path": "/api/v1/admin/data-requests",
+   "auth": "perm",
+   "perm": "data_request:process"
+  },
+  {
+   "mod": "admin/ops",
+   "m": "POST",
+   "path": "/api/v1/admin/data-requests/{did}",
+   "auth": "perm",
+   "perm": "data_request:process"
+  },
+  {
+   "mod": "admin/ops",
+   "m": "POST",
+   "path": "/api/v1/admin/data-requests/{did}/erase",
+   "auth": "perm",
+   "perm": "data_request:process"
+  },
+  {
+   "mod": "admin/users",
+   "m": "GET",
+   "path": "/api/v1/admin/users",
+   "auth": "perm",
+   "perm": "user:read"
+  },
+  {
+   "mod": "admin/users",
+   "m": "GET",
+   "path": "/api/v1/admin/users/{uid}",
+   "auth": "perm",
+   "perm": "user:read"
+  },
+  {
+   "mod": "admin/users",
+   "m": "POST",
+   "path": "/api/v1/admin/users",
+   "auth": "perm",
+   "perm": "user:write"
+  },
+  {
+   "mod": "admin/users",
+   "m": "PUT",
+   "path": "/api/v1/admin/users/{uid}/roles",
+   "auth": "perm",
+   "perm": "user:write"
+  },
+  {
+   "mod": "admin/users",
+   "m": "POST",
+   "path": "/api/v1/admin/users/{uid}/deactivate",
+   "auth": "perm",
+   "perm": "user:write"
+  },
+  {
+   "mod": "admin/users",
+   "m": "POST",
+   "path": "/api/v1/admin/users/{uid}/reactivate",
+   "auth": "perm",
+   "perm": "user:write"
+  },
+  {
+   "mod": "admin/users",
+   "m": "DELETE",
+   "path": "/api/v1/admin/users/{uid}/sessions",
+   "auth": "perm",
+   "perm": "session:revoke"
+  },
+  {
+   "mod": "admin/users",
+   "m": "POST",
+   "path": "/api/v1/admin/entitlements",
+   "auth": "perm",
+   "perm": "entitlement:grant"
+  },
+  {
+   "mod": "admin/users",
+   "m": "POST",
+   "path": "/api/v1/admin/entitlements/{eid}/revoke",
+   "auth": "perm",
+   "perm": "entitlement:grant"
+  },
+  {
+   "mod": "admin/users",
+   "m": "GET",
+   "path": "/api/v1/admin/batches",
+   "auth": "perm",
+   "perm": "batch:manage"
+  },
+  {
+   "mod": "admin/users",
+   "m": "POST",
+   "path": "/api/v1/admin/batches",
+   "auth": "perm",
+   "perm": "batch:manage"
+  },
+  {
+   "mod": "admin/users",
+   "m": "PATCH",
+   "path": "/api/v1/admin/batches/{bid}",
+   "auth": "perm",
+   "perm": "batch:manage"
+  },
+  {
+   "mod": "auth",
+   "m": "POST",
+   "path": "/api/v1/auth/otp/request",
+   "auth": "public",
+   "perm": ""
+  },
+  {
+   "mod": "auth",
+   "m": "POST",
+   "path": "/api/v1/auth/otp/verify",
+   "auth": "public",
+   "perm": ""
+  },
+  {
+   "mod": "auth",
+   "m": "POST",
+   "path": "/api/v1/auth/signup",
+   "auth": "public",
+   "perm": ""
+  },
+  {
+   "mod": "auth",
+   "m": "POST",
+   "path": "/api/v1/auth/staff/login",
+   "auth": "public",
+   "perm": ""
+  },
+  {
+   "mod": "auth",
+   "m": "POST",
+   "path": "/api/v1/auth/staff/mfa/setup",
+   "auth": "public",
+   "perm": ""
+  },
+  {
+   "mod": "auth",
+   "m": "POST",
+   "path": "/api/v1/auth/staff/mfa",
+   "auth": "public",
+   "perm": ""
+  },
+  {
+   "mod": "auth",
+   "m": "POST",
+   "path": "/api/v1/auth/refresh",
+   "auth": "public",
+   "perm": ""
+  },
+  {
+   "mod": "auth",
+   "m": "POST",
+   "path": "/api/v1/auth/logout",
+   "auth": "pending",
+   "perm": ""
+  },
+  {
+   "mod": "auth",
+   "m": "GET",
+   "path": "/api/v1/me",
+   "auth": "pending",
+   "perm": ""
+  },
+  {
+   "mod": "auth",
+   "m": "PATCH",
+   "path": "/api/v1/me",
+   "auth": "pending",
+   "perm": ""
+  },
+  {
+   "mod": "auth",
+   "m": "GET",
+   "path": "/api/v1/me/sessions",
+   "auth": "pending",
+   "perm": ""
+  },
+  {
+   "mod": "auth",
+   "m": "DELETE",
+   "path": "/api/v1/me/sessions/{session_id}",
+   "auth": "pending",
+   "perm": ""
+  },
+  {
+   "mod": "commerce",
+   "m": "GET",
+   "path": "/api/v1/courses",
+   "auth": "public",
+   "perm": ""
+  },
+  {
+   "mod": "commerce",
+   "m": "GET",
+   "path": "/api/v1/courses/{code}",
+   "auth": "optional",
+   "perm": ""
+  },
+  {
+   "mod": "commerce",
+   "m": "POST",
+   "path": "/api/v1/courses/{code}/register",
+   "auth": "perm",
+   "perm": "course:register"
+  },
+  {
+   "mod": "commerce",
+   "m": "GET",
+   "path": "/api/v1/me/registrations",
+   "auth": "perm",
+   "perm": "course:register"
+  },
+  {
+   "mod": "flashcards",
+   "m": "GET",
+   "path": "/api/v1/flashcards/decks",
+   "auth": "perm",
+   "perm": "flashcard:review"
+  },
+  {
+   "mod": "flashcards",
+   "m": "GET",
+   "path": "/api/v1/flashcards/session",
+   "auth": "perm",
+   "perm": "flashcard:review"
+  },
+  {
+   "mod": "flashcards",
+   "m": "POST",
+   "path": "/api/v1/flashcards/{card_id}/review",
+   "auth": "perm",
+   "perm": "flashcard:review"
+  },
+  {
+   "mod": "flashcards",
+   "m": "GET",
+   "path": "/api/v1/admin/flashcards",
+   "auth": "perm",
+   "perm": "catalog:read_admin"
+  },
+  {
+   "mod": "flashcards",
+   "m": "POST",
+   "path": "/api/v1/admin/flashcards",
+   "auth": "perm",
+   "perm": "flashcard:write"
+  },
+  {
+   "mod": "flashcards",
+   "m": "PATCH",
+   "path": "/api/v1/admin/flashcards/{cid}",
+   "auth": "perm",
+   "perm": "flashcard:write"
+  },
+  {
+   "mod": "learning",
+   "m": "GET",
+   "path": "/api/v1/subjects",
+   "auth": "optional",
+   "perm": ""
+  },
+  {
+   "mod": "learning",
+   "m": "GET",
+   "path": "/api/v1/subjects/{code}",
+   "auth": "optional",
+   "perm": ""
+  },
+  {
+   "mod": "learning",
+   "m": "GET",
+   "path": "/api/v1/lms/{lm_id}",
+   "auth": "session",
+   "perm": ""
+  },
+  {
+   "mod": "learning",
+   "m": "GET",
+   "path": "/api/v1/content/{item_id}",
+   "auth": "session",
+   "perm": ""
+  },
+  {
+   "mod": "learning",
+   "m": "GET",
+   "path": "/api/v1/resources/{rid}/playback",
+   "auth": "session",
+   "perm": ""
+  },
+  {
+   "mod": "learning",
+   "m": "GET",
+   "path": "/api/v1/media/stream/{token}",
+   "auth": "public",
+   "perm": ""
+  },
+  {
+   "mod": "learning",
+   "m": "POST",
+   "path": "/api/v1/resources/{rid}/progress",
+   "auth": "perm",
+   "perm": "progress:write"
+  },
+  {
+   "mod": "learning",
+   "m": "POST",
+   "path": "/api/v1/lms/{lm_id}/learned",
+   "auth": "perm",
+   "perm": "progress:write"
+  },
+  {
+   "mod": "learning",
+   "m": "DELETE",
+   "path": "/api/v1/lms/{lm_id}/learned",
+   "auth": "perm",
+   "perm": "progress:write"
+  },
+  {
+   "mod": "learning",
+   "m": "POST",
+   "path": "/api/v1/lms/{lm_id}/revisions",
+   "auth": "perm",
+   "perm": "progress:write"
+  },
+  {
+   "mod": "learning",
+   "m": "PUT",
+   "path": "/api/v1/lms/{lm_id}/eoc",
+   "auth": "perm",
+   "perm": "progress:write"
+  },
+  {
+   "mod": "learning",
+   "m": "GET",
+   "path": "/api/v1/me/dashboard",
+   "auth": "session",
+   "perm": ""
+  },
+  {
+   "mod": "learning",
+   "m": "GET",
+   "path": "/api/v1/search",
+   "auth": "session",
+   "perm": ""
+  },
+  {
+   "mod": "learning",
+   "m": "GET",
+   "path": "/api/v1/me/bookmarks",
+   "auth": "perm",
+   "perm": "bookmark:self"
+  },
+  {
+   "mod": "learning",
+   "m": "POST",
+   "path": "/api/v1/me/bookmarks",
+   "auth": "perm",
+   "perm": "bookmark:self"
+  },
+  {
+   "mod": "learning",
+   "m": "DELETE",
+   "path": "/api/v1/me/bookmarks/{bid}",
+   "auth": "perm",
+   "perm": "bookmark:self"
+  },
+  {
+   "mod": "payments",
+   "m": "GET",
+   "path": "/api/v1/me/orders",
+   "auth": "perm",
+   "perm": "order:self"
+  },
+  {
+   "mod": "payments",
+   "m": "GET",
+   "path": "/api/v1/payments/orders/{order_id}",
+   "auth": "perm",
+   "perm": "order:self"
+  },
+  {
+   "mod": "payments",
+   "m": "POST",
+   "path": "/api/v1/payments/orders/{order_id}/confirm",
+   "auth": "perm",
+   "perm": "order:self"
+  },
+  {
+   "mod": "payments",
+   "m": "POST",
+   "path": "/api/v1/payments/webhooks/{provider}",
+   "auth": "public",
+   "perm": ""
+  },
+  {
+   "mod": "payments",
+   "m": "GET",
+   "path": "/api/v1/payments/mock/orders/{provider_order_id}",
+   "auth": "public",
+   "perm": ""
+  },
+  {
+   "mod": "payments",
+   "m": "POST",
+   "path": "/api/v1/payments/mock/complete",
+   "auth": "perm",
+   "perm": "order:self"
+  },
+  {
+   "mod": "privacy",
+   "m": "GET",
+   "path": "/api/v1/privacy/notice/current",
+   "auth": "public",
+   "perm": ""
+  },
+  {
+   "mod": "privacy",
+   "m": "GET",
+   "path": "/api/v1/me/consents",
+   "auth": "pending",
+   "perm": ""
+  },
+  {
+   "mod": "privacy",
+   "m": "POST",
+   "path": "/api/v1/me/consents",
+   "auth": "session",
+   "perm": ""
+  },
+  {
+   "mod": "privacy",
+   "m": "GET",
+   "path": "/api/v1/me/guardian",
+   "auth": "pending",
+   "perm": ""
+  },
+  {
+   "mod": "privacy",
+   "m": "POST",
+   "path": "/api/v1/me/guardian",
+   "auth": "pending",
+   "perm": ""
+  },
+  {
+   "mod": "privacy",
+   "m": "GET",
+   "path": "/api/v1/guardian-consent/{token}",
+   "auth": "public",
+   "perm": ""
+  },
+  {
+   "mod": "privacy",
+   "m": "POST",
+   "path": "/api/v1/guardian-consent/{token}/otp",
+   "auth": "public",
+   "perm": ""
+  },
+  {
+   "mod": "privacy",
+   "m": "POST",
+   "path": "/api/v1/guardian-consent/{token}",
+   "auth": "public",
+   "perm": ""
+  },
+  {
+   "mod": "privacy",
+   "m": "GET",
+   "path": "/api/v1/me/data-requests",
+   "auth": "pending",
+   "perm": ""
+  },
+  {
+   "mod": "privacy",
+   "m": "POST",
+   "path": "/api/v1/me/data-requests",
+   "auth": "pending",
+   "perm": ""
+  },
+  {
+   "mod": "privacy",
+   "m": "GET",
+   "path": "/api/v1/me/data-export",
+   "auth": "pending",
+   "perm": ""
+  },
+  {
+   "mod": "qbank",
+   "m": "GET",
+   "path": "/api/v1/practice/options",
+   "auth": "perm",
+   "perm": "test:take"
+  },
+  {
+   "mod": "qbank",
+   "m": "POST",
+   "path": "/api/v1/tests/preview",
+   "auth": "perm",
+   "perm": "test:take"
+  },
+  {
+   "mod": "qbank",
+   "m": "POST",
+   "path": "/api/v1/tests",
+   "auth": "perm",
+   "perm": "test:take"
+  },
+  {
+   "mod": "qbank",
+   "m": "POST",
+   "path": "/api/v1/lms/{lm_id}/quiz",
+   "auth": "perm",
+   "perm": "test:take"
+  },
+  {
+   "mod": "qbank",
+   "m": "POST",
+   "path": "/api/v1/subjects/{code}/test",
+   "auth": "perm",
+   "perm": "test:take"
+  },
+  {
+   "mod": "qbank",
+   "m": "GET",
+   "path": "/api/v1/attempts/{attempt_id}",
+   "auth": "perm",
+   "perm": "test:take"
+  },
+  {
+   "mod": "qbank",
+   "m": "PUT",
+   "path": "/api/v1/attempts/{attempt_id}/items/{position}",
+   "auth": "perm",
+   "perm": "test:take"
+  },
+  {
+   "mod": "qbank",
+   "m": "POST",
+   "path": "/api/v1/attempts/{attempt_id}/submit",
+   "auth": "perm",
+   "perm": "test:take"
+  },
+  {
+   "mod": "qbank",
+   "m": "GET",
+   "path": "/api/v1/me/attempts",
+   "auth": "perm",
+   "perm": "test:take"
+  },
+  {
+   "mod": "qbank",
+   "m": "GET",
+   "path": "/api/v1/me/test-stats",
+   "auth": "perm",
+   "perm": "test:take"
+  },
+  {
+   "mod": "qbank",
+   "m": "GET",
+   "path": "/api/v1/admin/questions",
+   "auth": "perm",
+   "perm": "catalog:read_admin"
+  },
+  {
+   "mod": "qbank",
+   "m": "POST",
+   "path": "/api/v1/admin/questions",
+   "auth": "perm",
+   "perm": "qbank:write"
+  },
+  {
+   "mod": "qbank",
+   "m": "PATCH",
+   "path": "/api/v1/admin/questions/{qid}",
+   "auth": "perm",
+   "perm": "qbank:write"
+  },
+  {
+   "mod": "qbank",
+   "m": "POST",
+   "path": "/api/v1/admin/questions/{qid}/{action}",
+   "auth": "perm",
+   "perm": "qbank:publish"
+  },
+  {
+   "mod": "qbank",
+   "m": "GET",
+   "path": "/api/v1/admin/questions/validate",
+   "auth": "perm",
+   "perm": "catalog:read_admin"
+  },
+  {
+   "mod": "system",
+   "m": "GET",
+   "path": "/api/v1/healthz",
+   "auth": "public",
+   "perm": ""
+  },
+  {
+   "mod": "system",
+   "m": "GET",
+   "path": "/api/v1/readyz",
+   "auth": "public",
+   "perm": ""
+  }
+ ]
+}
